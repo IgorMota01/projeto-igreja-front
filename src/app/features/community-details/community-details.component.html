@@ -1,0 +1,57 @@
+<app-layout>
+    <div class="community-details-page">
+      <div class="back-button">
+        <a routerLink="/community" class="btn-back">
+          ← Voltar para comunidades
+        </a>
+      </div>
+  
+      <article class="community-details">
+        <header class="community-header">
+          <img [src]="community.imageUrl" [alt]="community.name" 
+               class="community-image" loading="lazy">
+          <h1>{{ community.name }}</h1>
+          <p class="community-description">{{ community.description }}</p>
+        </header>
+  
+        <section class="community-content">
+          <div class="community-history">
+            <h2>Nossa História</h2>
+            <p>{{ community.history }}</p>
+          </div>
+  
+          <div class="community-schedule">
+            <h2>Encontros e Horários</h2>
+            <p>{{ community.meetingSchedule }}</p>
+          </div>
+  
+          <div class="community-members">
+            <h2>Participantes</h2>
+            <ul class="members-list">
+              <li *ngFor="let member of community.members">{{ member }}</li>
+            </ul>
+          </div>
+  
+          <div class="community-gallery" *ngIf="community.gallery?.length">
+            <h2>Galeria</h2>
+            <div class="gallery-grid">
+              <img *ngFor="let image of community.gallery" 
+                   [src]="image" 
+                   alt="Foto da comunidade {{ community.name }}"
+                   loading="lazy">
+            </div>
+          </div>
+  
+          <div class="video-container" *ngIf="community.videoUrl">
+            <h2>Vídeo da Comunidade</h2>
+            <iframe 
+              [src]="community.videoUrl" 
+              frameborder="0" 
+              allowfullscreen
+              class="community-video">
+            </iframe>
+          </div>
+        </section>
+      </article>
+    </div>
+  </app-layout>

@@ -1,0 +1,258 @@
+<app-layout>
+  <div class="readings-section">
+    <div class="calendar-button-container">
+      <button class="calendar-toggle-btn" (click)="toggleCalendar()">
+        <i class="fas fa-calendar-alt"></i> {{ currentMonth | date:'MMMM YYYY' }}
+      </button>
+
+      <div class="calendar-container" *ngIf="showCalendar">
+        <div class="calendar-header">
+          <button (click)="previousMonth()"><i class="fas fa-chevron-left"></i></button>
+          <h3>{{ currentMonth | date:'MMMM YYYY' }}</h3>
+          <button (click)="nextMonth()"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="calendar-grid">
+          <div class="calendar-weekday" *ngFor="let day of weekdays">{{ day }}</div>
+          <div *ngFor="let day of calendarDays"
+               class="calendar-day"
+               [class.disabled]="!day.enabled"
+               [class.selected]="day.date === selectedDate"
+               (click)="selectDate(day.date)">
+            {{ day.day }}
+            <div class="liturgy-indicator" *ngIf="day.hasLiturgy"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="audio-player" *ngIf="currentAudio">
+      <audio #audioPlayer controls>
+        <source [src]="currentAudio.url" [type]="currentAudio.type">
+      </audio>
+      <p class="audio-title">{{ currentAudio.title }}</p>
+    </div>
+
+    <h2 class="section-title">{{ liturgiaData.titulo || 'Liturgia Completa' }}</h2>
+    <div class="current-date">{{ getFormattedDate() }}</div>
+    <div class="liturgy-color" *ngIf="liturgiaData.cor">
+      Cor Litúrgica: <span class="color-badge">{{ liturgiaData.cor }}</span>
+    </div>
+
+    <div *ngIf="isLoading" class="loading-state">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Carregando a liturgia completa...</p>
+    </div>
+
+    <div *ngIf="errorMessage" class="info-message">
+      <i class="fas fa-info-circle"></i>
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="!isLoading" class="readings-container">
+      <!-- Menu de navegação entre seções -->
+      <div class="reading-navigation">
+        <button (click)="currentSection = 'oracoes'" [class.active]="currentSection === 'oracoes'">
+          <i class="fas fa-pray"></i> Orações
+        </button>
+        <button (click)="currentSection = 'primeiraLeitura'" 
+                [class.active]="currentSection === 'primeiraLeitura'"
+                *ngIf="liturgiaData.primeiraLeitura">
+          <i class="fas fa-book"></i> 1ª Leitura
+        </button>
+        <button (click)="currentSection = 'salmo'" 
+                [class.active]="currentSection === 'salmo'"
+                *ngIf="liturgiaData.salmo">
+          <i class="fas fa-music"></i> Salmo
+        </button>
+        <button (click)="currentSection = 'evangelho'" 
+                [class.active]="currentSection === 'evangelho'"
+                *ngIf="liturgiaData.evangelho">
+          <i class="fas fa-cross"></i> Evangelho
+        </button>
+        <button (click)="currentSection = 'antifonas'" 
+                [class.active]="currentSection === 'antifonas'"
+                *ngIf="liturgiaData.antifonas">
+          <i class="fas fa-quote-right"></i> Antífonas
+        </button>
+      </div>
+
+      <!-- Seção de Orações -->
+      <div class="reading-section" *ngIf="currentSection === 'oracoes' && liturgiaData.oracoes">
+        <div class="prayer-section">
+          <div class="reading-header">
+            <i class="fas fa-pray"></i>
+            <h3>Orações</h3>
+          </div>
+          <div class="reading-content">
+            <div *ngIf="liturgiaData.oracoes.coleta">
+              <h4>Coleta</h4>
+              <div class="expandable-text" [class.expanded]="isExpanded['coleta']">
+                <p [innerHTML]="formatarTextoComVersiculos(liturgiaData.oracoes.coleta)"></p>
+              </div>
+              <button class="read-more-btn"
+                      (click)="toggleExpand('coleta')"
+                      *ngIf="liturgiaData.oracoes.coleta.length > 200"
+                      [class.expanded]="isExpanded['coleta']">
+                {{ isExpanded['coleta'] ? 'Mostrar menos' : 'Leia mais' }}
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+
+            <div *ngIf="liturgiaData.oracoes.obreias">
+              <h4>Obreias</h4>
+              <div class="expandable-text" [class.expanded]="isExpanded['obreias']">
+                <p [innerHTML]="formatarTextoComVersiculos(liturgiaData.oracoes.obreias)"></p>
+              </div>
+              <button class="read-more-btn"
+                      (click)="toggleExpand('obreias')"
+                      *ngIf="liturgiaData.oracoes.obreias.length > 200"
+                      [class.expanded]="isExpanded['obreias']">
+                {{ isExpanded['obreias'] ? 'Mostrar menos' : 'Leia mais' }}
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+
+            <div *ngIf="liturgiaData.oracoes.posComunhao">
+              <h4>Pós-Comunhão</h4>
+              <div class="expandable-text" [class.expanded]="isExpanded['posComunhao']">
+                <p [innerHTML]="formatarTextoComVersiculos(liturgiaData.oracoes.posComunhao)"></p>
+              </div>
+              <button class="read-more-btn"
+                      (click)="toggleExpand('posComunhao')"
+                      *ngIf="liturgiaData.oracoes.posComunhao.length > 200"
+                      [class.expanded]="isExpanded['posComunhao']">
+                {{ isExpanded['posComunhao'] ? 'Mostrar menos' : 'Leia mais' }}
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção de Primeira Leitura -->
+      <div class="reading-section" *ngIf="currentSection === 'primeiraLeitura' && liturgiaData.primeiraLeitura">
+        <div class="reading-card">
+          <div class="reading-header">
+            <i class="fas fa-book"></i>
+            <h3>Primeira Leitura</h3>
+          </div>
+          <div class="reading-content">
+            <h4>{{ liturgiaData.primeiraLeitura.referencia || 'Referência não disponível' }}</h4>
+            <div class="expandable-text" [class.expanded]="isExpanded['primeiraLeitura']">
+              <p [innerHTML]="formatarTextoComVersiculos(liturgiaData.primeiraLeitura.texto)"></p>
+            </div>
+            <button class="read-more-btn"
+                    (click)="toggleExpand('primeiraLeitura')"
+                    *ngIf="liturgiaData.primeiraLeitura.texto.length > 200"
+                    [class.expanded]="isExpanded['primeiraLeitura']">
+              {{ isExpanded['primeiraLeitura'] ? 'Mostrar menos' : 'Leia mais' }}
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção de Salmo -->
+      <div class="reading-section" *ngIf="currentSection === 'salmo' && liturgiaData.salmo">
+        <div class="reading-card">
+          <div class="reading-header">
+            <i class="fas fa-music"></i>
+            <h3>Salmo Responsorial</h3>
+          </div>
+          <div class="reading-content">
+            <h4>{{ liturgiaData.salmo.referencia || 'Referência não disponível' }}</h4>
+            <div class="psalm-refrain">
+              <div class="expandable-text" [class.expanded]="isExpanded['salmoRefrao']">
+                <p><em [innerHTML]="formatarTextoComVersiculos(liturgiaData.salmo.refrao)"></em></p>
+              </div>
+              <button class="read-more-btn"
+                      (click)="toggleExpand('salmoRefrao')"
+                      *ngIf="liturgiaData.salmo.refrao.length > 100"
+                      [class.expanded]="isExpanded['salmoRefrao']">
+                {{ isExpanded['salmoRefrao'] ? 'Mostrar menos' : 'Leia mais' }}
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="expandable-text" [class.expanded]="isExpanded['salmoTexto']">
+              <p [innerHTML]="formatarTextoComVersiculos(liturgiaData.salmo.texto)"></p>
+            </div>
+            <button class="read-more-btn"
+                    (click)="toggleExpand('salmoTexto')"
+                    *ngIf="liturgiaData.salmo.texto.length > 200"
+                    [class.expanded]="isExpanded['salmoTexto']">
+              {{ isExpanded['salmoTexto'] ? 'Mostrar menos' : 'Leia mais' }}
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção de Evangelho -->
+      <div class="reading-section" *ngIf="currentSection === 'evangelho' && liturgiaData.evangelho">
+        <div class="reading-card highlight">
+          <div class="reading-header">
+            <i class="fas fa-cross"></i>
+            <h3>Evangelho</h3>
+          </div>
+          <div class="reading-content">
+            <h4>{{ liturgiaData.evangelho.referencia || 'Referência não disponível' }}</h4>
+            <div class="expandable-text" [class.expanded]="isExpanded['evangelho']">
+              <p [innerHTML]="formatarTextoComVersiculos(liturgiaData.evangelho.texto)"></p>
+            </div>
+            <button class="read-more-btn"
+                    (click)="toggleExpand('evangelho')"
+                    *ngIf="liturgiaData.evangelho.texto.length > 200"
+                    [class.expanded]="isExpanded['evangelho']">
+              {{ isExpanded['evangelho'] ? 'Mostrar menos' : 'Leia mais' }}
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção de Antífonas -->
+      <div class="reading-section" *ngIf="currentSection === 'antifonas' && liturgiaData.antifonas">
+        <div class="antiphon-section">
+          <div class="reading-header">
+            <i class="fas fa-quote-right"></i>
+            <h3>Antífonas</h3>
+          </div>
+          <div class="reading-content">
+            <div *ngIf="liturgiaData.antifonas.entrada">
+              <h4>Entrada</h4>
+              <div class="expandable-text" [class.expanded]="isExpanded['antifonaEntrada']">
+                <p [innerHTML]="formatarTextoComVersiculos(liturgiaData.antifonas.entrada)"></p>
+              </div>
+              <button class="read-more-btn"
+                      (click)="toggleExpand('antifonaEntrada')"
+                      *ngIf="liturgiaData.antifonas.entrada.length > 150"
+                      [class.expanded]="isExpanded['antifonaEntrada']">
+                {{ isExpanded['antifonaEntrada'] ? 'Mostrar menos' : 'Leia mais' }}
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div *ngIf="liturgiaData.antifonas.comunhao">
+              <h4>Comunhão</h4>
+              <div class="expandable-text" [class.expanded]="isExpanded['antifonaComunhao']">
+                <p [innerHTML]="formatarTextoComVersiculos(liturgiaData.antifonas.comunhao)"></p>
+              </div>
+              <button class="read-more-btn"
+                      (click)="toggleExpand('antifonaComunhao')"
+                      *ngIf="liturgiaData.antifonas.comunhao.length > 150"
+                      [class.expanded]="isExpanded['antifonaComunhao']">
+                {{ isExpanded['antifonaComunhao'] ? 'Mostrar menos' : 'Leia mais' }}
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="back-button">
+      <button class="share-btn" (click)="goBack()">
+        <i class="fas fa-arrow-left"></i> Voltar
+      </button>
+    </div>
+  </div>
+</app-layout>

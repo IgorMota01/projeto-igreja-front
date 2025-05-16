@@ -1,0 +1,276 @@
+@use '../../../styles/variables' as *;
+
+
+.readings-section {
+  font-family: 'Merriweather', serif;
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--nav-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  .section-title {
+    color: var(--section-title-color);
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.8rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--link-hover), var(--nav-bg));
+    }
+  }
+
+  .current-date {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  .reading-card {
+    background-color: var(--nav-bg);
+    border-radius: 8px;
+    margin: 1.5rem auto;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--link-hover);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .reading-card.highlight {
+    border-left: 4px solid var(--link-hover);
+    background-color: var(--nav-bg);
+    position: relative;
+
+    &::before {
+      content: 'Destaque';
+      position: absolute;
+      top: -10px;
+      right: 15px;
+      background: var(--nav-bg);
+      color: var(--text-color);
+      padding: 0.2rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+  }
+
+  .reading-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--h4-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(138, 108, 76, 0.2);
+
+    i {
+      font-size: 1.4rem;
+      color: var(--link-hover);
+    }
+  }
+
+  .reading-content {
+    h4 {
+      color: var(--h4-color);
+      margin-bottom: 1rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+  }
+
+  .antiphon-section {
+    @extend .reading-card; // Herda todos os estilos do reading-card
+    margin-top: 2rem;
+
+    .antiphon-header {
+      @extend .reading-header; // Herda o estilo do cabeçalho
+    }
+
+    .antiphon-content {
+      h4 {
+        color: var(--nav-bg);
+        margin-bottom: 1rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  .psalm-refrain {
+    color: var(--nav-bg);
+    font-weight: 500;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(242, 203, 7, 0.1);
+    border-left: 3px solid var(--link-hover);
+    font-style: italic;
+  }
+
+  .share-btn {
+    background: linear-gradient(135deg, var(--link-hover), #e6b800);
+    color: #000;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: 1.5rem auto;
+    padding: 1rem 2rem;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(135deg, #e6b800, var(--dropdown-hover-bg));
+    }
+  }
+
+  .see-all {
+    color: var(--nav-bg);
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: var(--link-hover);
+      text-decoration: none;
+      transform: translateX(5px);
+    }
+  }
+
+  .loading-state {
+    i {
+      color: var(--link-hover);
+    }
+  }
+
+  .info-message {
+    background-color: rgba(242, 203, 7, 0.1);
+    border-left: 4px solid var(--link-hover);
+    color: var(--nav-bg);
+
+    i {
+      color: var(--link-hover);
+    }
+  }
+}
+
+/* Responsividade */
+
+@media (max-width: 768px) {
+  .history-container {
+    padding: 1rem;
+    max-width: 55%;
+  }
+
+  .hero-section {
+    padding: 2rem 1rem;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+    }
+
+    .hero-buttons a {
+      min-width: 150px;
+      padding: 0.6rem 1.2rem;
+    }
+  }
+
+  .readings-section {
+    max-width: 100%;
+
+    .section-title {
+      font-size: 1.5rem;
+    }
+
+    .current-date {
+      font-size: 1rem;
+    }
+
+    .reading-card {
+      padding: 0.8rem 1.5rem;
+
+      h4 {
+        font-size: 1rem;
+      }
+    }
+
+    .psalm-refrain {
+      font-size: 0.9rem;
+    }
+
+    .share-btn {
+      padding: 0.8rem 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .see-all {
+      font-size: 0.9rem;
+    }
+
+    .loading-state {
+      font-size: 0.9rem;
+    }
+
+    .info-message {
+      font-size: 0.9rem;
+    }
+
+    .antiphon-section {
+      margin-top: 1.5rem;
+
+      .antiphon-header {
+        font-size: 1rem;
+      }
+
+      .antiphon-content {
+        h4 {
+          font-size: 1rem;
+        }
+
+        p {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  .image-gallery {
+    grid-template-columns: 1fr;
+  }
+}

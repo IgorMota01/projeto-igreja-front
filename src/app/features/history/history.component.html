@@ -1,0 +1,61 @@
+<app-layout>
+  <!-- parish-history.component.html -->
+  <div class="history-container">
+    <header class="history-header">
+      <h1>História da Nossa Paróquia</h1>
+      <p>Uma jornada de fé através dos tempos</p>
+    </header>
+
+    <main class="history-content">
+      <section *ngFor="let section of historySections; let i = index" class="history-section">
+        <h2>{{ section.title }}</h2>
+
+        <div class="section-content" [innerHTML]="section.content"></div>
+
+        <!-- Carrossel de imagens com botões -->
+        <div *ngIf="section.images?.length" class="carousel-wrapper">
+          <button class="carousel-btn left" (click)="scrollGalleryLeft(i)">‹</button>
+
+          <div class="image-gallery" #gallery (mouseenter)="onMouseEnter(i)" (mouseleave)="onMouseLeave(i)">
+            <div class="image-with-caption" *ngFor="let img of section.images">
+              <div class="caption">{{ img.caption }}</div>
+              <img [src]="getImageUrl(img.url)" [alt]="section.title" class="history-image" />
+            </div>
+          </div>
+
+          <button class="carousel-btn right" (click)="scrollGalleryRight(i)">›</button>
+        </div>
+        <!-- Galeria de imagens -->
+
+        <!-- Vídeos -->
+        <div class="video-container" *ngIf="section.videos?.length">
+          <iframe *ngFor="let video of section.videos" width="560" height="315"
+            [src]="'https://www.youtube.com/embed/' + video" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <!-- Links relacionados -->
+        <div class="related-links" *ngIf="section.links?.length">
+          <h3>Saiba mais:</h3>
+          <ul>
+            <li *ngFor="let link of section.links">
+              <a [routerLink]="link.route">{{ link.text }}</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- Seção de colaboradores -->
+    <aside class="contributors-section">
+      <h2>Colaboradores</h2>
+      <p>Esta história foi possível graças ao trabalho de:</p>
+
+      <div class="contributors-grid">
+        <div *ngFor="let person of contributors" class="contributor-card">
+          <h3>{{ person.name }}</h3>
+          <p>{{ person.role }}</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+</app-layout>

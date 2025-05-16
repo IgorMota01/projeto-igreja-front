@@ -1,0 +1,60 @@
+<div class="readings-section">
+  <h2 class="section-title">{{ liturgiaData.titulo || 'Liturgia Diária' }}</h2>
+  <div class="current-date">{{ getFormattedDate() }}</div>
+  
+  <!-- Loader -->
+  <div *ngIf="isLoading" class="loading-state">
+    <i class="fas fa-spinner fa-spin"></i>
+    <p>Carregando as leituras...</p>
+  </div>
+  
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="info-message">
+    <i class="fas fa-info-circle"></i>
+    {{ errorMessage }}
+  </div>
+  
+  <!-- Leituras -->
+  <div *ngIf="!isLoading" class="readings-container">
+    <!-- Primeira Leitura -->
+    <div class="reading-card">
+      <div class="reading-header">
+        <i class="fas fa-book"></i>
+        <h3>Primeira Leitura</h3>
+      </div>
+      <div class="reading-content">
+        <h4>{{ liturgiaData.primeiraLeitura || 'Referência não disponível' }}</h4>
+      </div>
+    </div>
+    
+    <!-- Salmo Responsorial -->
+    <div class="reading-card">
+      <div class="reading-header">
+        <i class="fas fa-music"></i>
+        <h3>Salmo Responsorial</h3>
+      </div>
+      <div class="reading-content">
+        <h4>{{ liturgiaData.salmoReferencia || 'Referência não disponível' }}</h4>
+      </div>
+    </div>
+    
+    <!-- Evangelho -->
+    <div class="reading-card highlight">
+      <div class="reading-header">
+        <i class="fas fa-cross"></i>
+        <h3>Evangelho do Dia</h3>
+      </div>
+      <div class="reading-content">
+        <h4>{{ liturgiaData.evangelhoReferencia || 'Referência não disponível' }}</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="share-btn" (click)="navigateToDetails()">
+      <i class="fas fa-book-open"></i> Ver Detalhes Completos
+    </button>
+  </div>
+</div>
+
+  

@@ -1,0 +1,71 @@
+<!-- mass-intention-dialog.component.html -->
+<div class="custom-dialog-container">
+    <div class="custom-dialog-header">
+        <h2 class="custom-dialog-title">
+            <i class="material-icons">church</i>
+            Intenção de Missa
+        </h2>
+    </div>
+
+    <form [formGroup]="intentionForm" (ngSubmit)="submitForm()" class="custom-form">
+        <!-- Campo Nome -->
+        <div class="form-group">
+            <label for="name">Nome do Ofertante</label>
+            <div class="input-container">
+                <input type="text" id="name" formControlName="name" required>
+                <i class="material-icons">person</i>
+            </div>
+            <div class="error-message" *ngIf="intentionForm.get('name')?.invalid && intentionForm.get('name')?.touched">
+                Campo obrigatório
+            </div>
+        </div>
+
+        <!-- Campo Intenção -->
+        <div class="form-group">
+            <label for="intention">Email</label>
+            <div class="input-container">
+                <input type="email" id="email" formControlName="email" required>
+                <i class="material-icons">mail</i>
+            </div>
+            <div class="error-message"
+                *ngIf="intentionForm.get('intention')?.invalid && intentionForm.get('intention')?.touched">
+                Campo obrigatório
+            </div>
+        </div>
+
+        <!-- Campo Intenção -->
+        <div class="form-group">
+            <label for="intention">Intenção</label>
+            <div class="input-container">
+                <input type="text" id="intention" formControlName="intention" required>
+                <i class="material-icons">description</i>
+            </div>
+            <div class="error-message"
+                *ngIf="intentionForm.get('intention')?.invalid && intentionForm.get('intention')?.touched">
+                Campo obrigatório
+            </div>
+        </div>
+
+        <!-- Campo Data -->
+        <div class="form-group">
+            <label for="date">Data desejada</label>
+            <div class="input-container">
+                <input type="date" id="date" formControlName="date" required>
+                <i class="material-icons">calendar_today</i>
+            </div>
+            <div class="error-message" *ngIf="intentionForm.get('date')?.invalid && intentionForm.get('date')?.touched">
+                Selecione uma data
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" (click)="close()" class="cancel-button">
+                Cancelar
+            </button>
+            <button type="submit" [disabled]="intentionForm.invalid" class="submit-button">
+                <i class="material-icons">send</i>
+                Enviar
+            </button>
+        </div>
+    </form>
+</div>

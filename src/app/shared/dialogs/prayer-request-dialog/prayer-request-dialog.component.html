@@ -1,0 +1,26 @@
+<mat-card class="dialog-card">
+    <h2 class="dialog-title">Intenção de Missa</h2>
+    <form [formGroup]="prayerRequestForm" (ngSubmit)="submitForm()">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Nome do Ofertante</mat-label>
+            <input matInput formControlName="name" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Intenção</mat-label>
+            <input matInput formControlName="intention" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Data desejada</mat-label>
+            <input matInput type="date" formControlName="date" required />
+        </mat-form-field>
+
+        <div class="actions">
+            <button mat-raised-button color="primary" type="submit" [disabled]="prayerRequestForm.invalid">
+                Enviar
+            </button>
+            <button mat-button type="button" (click)="close()">Cancelar</button>
+        </div>
+    </form>
+</mat-card>

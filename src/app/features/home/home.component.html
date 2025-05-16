@@ -1,0 +1,49 @@
+<app-layout>
+    <!-- Carrossel -->
+    <app-carousel></app-carousel>
+    
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+          <h1>Bem-vindo à Paróquia [Nome]</h1>
+          <p class="subtitle">Uma comunidade de fé, esperança e amor</p>
+          <div class="hero-buttons">
+            <a routerLink="/mass" class="btn-primary">Horários de Missa</a>
+            <a routerLink="/community" class="btn-secondary">Nossas Comunidades</a>
+          </div>
+        </div>
+    </div>
+
+    <app-daily-readings></app-daily-readings>
+
+    <!-- Seção de Eventos -->
+    <div class="events-section" *ngIf="upcomingEvents.length > 0">
+        <h2 class="section-title">Próximos Eventos</h2>
+        <div class="event-cards">
+          <div class="event-card" *ngFor="let event of upcomingEvents">
+            <div class="event-date">
+              <span class="day">{{event.day}}</span>
+              <span class="month">{{event.month}}</span>
+            </div>
+            <div class="event-info">
+              <h3>{{event.title}}</h3>
+              <p><i class="fas fa-clock"></i> {{event.time}}</p>
+              <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
+            </div>
+          </div>
+        </div>
+        <a routerLink="/events" class="see-all">Ver todos os eventos →</a>
+    </div>
+
+
+    <!-- Galeria de Fotos -->
+    <div class="gallery-section" *ngIf="galleryPhotos.length > 0">
+        <h2 class="section-title">Nossa Comunidade em Fotos</h2>
+        <div class="photo-grid">
+          <div class="photo-item" *ngFor="let photo of galleryPhotos">
+            <img [src]="photo.url" [alt]="photo.caption" class="gallery-image">
+            <div class="photo-caption">{{photo.caption}}</div>
+          </div>
+        </div>
+    </div>
+</app-layout>

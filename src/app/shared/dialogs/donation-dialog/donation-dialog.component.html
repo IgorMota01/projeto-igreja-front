@@ -1,0 +1,71 @@
+<!-- mass-intention-dialog.component.html -->
+<div class="custom-dialog-container">
+    <div class="custom-dialog-header">
+        <h2 class="custom-dialog-title">
+            <i class="material-icons">volunteer_activism</i>
+            Doação
+        </h2>
+    </div>
+
+    <form [formGroup]="donationForm" (ngSubmit)="submitForm()" class="custom-form">
+        <!-- Campo Nome -->
+        <div class="form-group">
+            <label for="name">Nome</label>
+            <div class="input-container">
+                <input type="text" id="name" formControlName="name" required>
+                <i class="material-icons">person</i>
+            </div>
+            <div class="error-message" *ngIf="donationForm.get('name')?.invalid && donationForm.get('name')?.touched">
+                Campo obrigatório
+            </div>
+        </div>
+
+        <!-- Campo Intenção -->
+        <div class="form-group">
+            <label for="intention">Email</label>
+            <div class="input-container">
+                <input type="email" id="email" formControlName="email" required>
+                <i class="material-icons">mail</i>
+            </div>
+            <div class="error-message"
+                *ngIf="donationForm.get('intention')?.invalid && donationForm.get('intention')?.touched">
+                Campo obrigatório
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Tipo de Doação</label>
+            <div class="payment-methods">
+                <label class="payment-option">
+                    <input type="radio" formControlName="paymentMethod" value="credit-card" required>
+                    <div class="payment-card">
+                        <i class="material-icons">credit_card</i>
+                        <span>Cartão de Crédito</span>
+                    </div>
+                </label>
+
+                <label class="payment-option">
+                    <input type="radio" formControlName="paymentMethod" value="pix">
+                    <div class="payment-card">
+                        <i class="material-icons">qr_code</i>
+                        <span>PIX</span>
+                    </div>
+                </label>
+            </div>
+            <div class="error-message"
+                *ngIf="donationForm.get('paymentMethod')?.invalid && donationForm.get('paymentMethod')?.touched">
+                Selecione um método de pagamento
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" (click)="close()" class="cancel-button">
+                Cancelar
+            </button>
+            <button type="submit" [disabled]="donationForm.invalid" class="submit-button">
+                <i class="material-icons">send</i>
+                Doar
+            </button>
+        </div>
+    </form>
+</div>

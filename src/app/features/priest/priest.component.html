@@ -1,0 +1,43 @@
+<app-layout>
+  <div class="priests-gallery">
+    <section class="hero-banner">
+      <div class="hero-content">
+        <h1>Padres da Nossa Paróquia</h1>
+        <p>Conheça os sacerdotes que fizeram parte da história da nossa comunidade</p>
+      </div>
+    </section>
+
+    <div class="gallery-section">
+      <!-- Seção do Pároco Atual -->
+      <div class="current-priest-section" *ngIf="currentPriest">
+        <h2 class="section-title">Nosso Pároco Atual</h2>
+        <div class="current-priest">
+          <div class="priest-image-container">
+            <img [src]="currentPriest.imageUrl" [alt]="currentPriest.name" class="priest-image">
+            <div class="priest-badge">Pároco Atual</div>
+          </div>
+          <div class="priest-info">
+            <h3>{{currentPriest.name}}</h3>
+            <p class="priest-period">{{currentPriest.period}}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção dos Padres Anteriores -->
+      <div class="former-priests-section" *ngIf="formerPriests.length > 0">
+        <h2 class="section-title">Confira os padres que contribuíram na nossa comunidade, antes de sermos paróquia</h2>
+        <div class="priests-grid">
+          <div class="priest-item" *ngFor="let priest of formerPriests">
+            <div class="priest-image-container">
+              <img [src]="priest.imageUrl" [alt]="priest.name" class="priest-image">
+            </div>
+            <div class="priest-info">
+              <h3>{{priest.name}}</h3>
+              <p class="priest-period">{{priest.period}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-layout>

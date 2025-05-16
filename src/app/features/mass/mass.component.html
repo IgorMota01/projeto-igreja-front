@@ -1,0 +1,50 @@
+<app-layout>
+  <div class="missas-page theme-default">
+    <!-- Se quiser usar o banner, descomente abaixo -->
+    <!-- <section class="hero-banner">
+      <div class="hero-content">
+        <h1>Missas</h1>
+        <p>Horários e celebrações recentes</p>
+      </div>
+    </section> -->
+
+    <div class="missas-container">
+      <!-- Seção de horários -->
+      <section class="horarios-section">
+        <h2>Horários Regulares</h2>
+        <div class="horarios-grid">
+          <div class="dia-missa" *ngFor="let dia of horarios">
+            <div class="dia-missa-content">
+              <h3>{{ dia.dia }}</h3>
+              <ul>
+                <li *ngFor="let horario of dia.horarios">{{ horario }}</li>
+              </ul>
+              <h4>Intenções</h4>
+              <p>{{ dia.intencao }}</p>
+            </div>
+            <div class="btn-container">
+              <button (click)="intencao(dia)" class="btn-intencao">
+                Pagar Intenção
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção de últimas missas -->
+      <section class="ultimas-missas">
+        <h2>Últimas Celebrações</h2>
+        <div class="missas-grid">
+          <div class="missa-card" *ngFor="let missa of ultimasMissas">
+            <img [src]="missa.fotoUrl" [alt]="'Missa ' + missa.data" />
+            <div class="missa-info">
+              <h3>{{ missa.data }} - {{ missa.celebrante }}</h3>
+              <p>{{ missa.intencoes }}</p>
+              <a [routerLink]="'/missas/detalhes/' + missa.id">Ver mais</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</app-layout>

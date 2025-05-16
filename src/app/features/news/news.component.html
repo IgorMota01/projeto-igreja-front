@@ -1,0 +1,35 @@
+<app-layout>
+    <div class="noticias-page theme-news">
+      <section class="hero-banner">
+        <div class="hero-content">
+          <h1>Notícias e Eventos</h1>
+          <p>Fique por dentro das novidades da nossa paróquia</p>
+        </div>
+      </section>
+  
+      <div class="noticias-container">
+        <div class="filtros">
+          <button *ngFor="let cat of categorias" 
+                  [class.active]="cat === categoriaSelecionada"
+                  (click)="categoriaSelecionada = cat">
+            {{ cat }}
+          </button>
+        </div>
+  
+        <div class="noticias-grid">
+          <div class="noticia-card" *ngFor="let noticia of filtrarNoticias()">
+            <img [src]="noticia.imagem" [alt]="noticia.titulo">
+            <div class="noticia-info">
+              <span class="categoria">{{ noticia.categoria }}</span>
+              <h2>{{ noticia.titulo }}</h2>
+              <p class="resumo">{{ noticia.resumo }}</p>
+              <div class="noticia-footer">
+                <span class="data">{{ noticia.data }}</span>
+                <a [routerLink]="['/noticias', noticia.id]">Ler mais</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-layout>

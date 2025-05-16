@@ -1,0 +1,190 @@
+/* ============================
+   Paleta padrão (cores fixas)
+=============================== */
+:root {
+  --nav-bg: #F2F2F2;
+  --link-color: #747474;
+  --link-hover: #F2CB07;
+  --dropdown-bg: #F2F2F2;
+  --dropdown-hover-bg: #F2F2F2;
+  --dropdown-hover-text: #F2CB07;
+}
+
+/* Transição global */
+body {
+  transition:
+    background-color 0.5s ease,
+    color 0.3s ease;
+}
+
+/* ============================
+   Tempos Litúrgicos
+=============================== */
+
+/* Tempo Comum */
+html.tempo-comum {
+  --nav-bg: #E8F5E9;
+  --link-color: #1B5E20;
+  --link-hover: #66BB6A;
+  --dropdown-bg: #C8E6C9;
+  --dropdown-hover-bg: #A5D6A7;
+  --dropdown-hover-text: #1B5E20;
+  --title-color: #2E7D32;
+  --subtitle-color: #388E3C;
+  --h3-color: #388E3C;
+  --h4-color: #66BB6A;
+  --button-color: #43A047;
+  --text-color: #1B5E20;
+  --see-all-color: #2E7D32;
+  --section-title-color: #388E3C;
+  --name-color: #1B5E20;
+  --date-bg-color: #66BB6A;
+  --date-color: #ffffff;
+  --mounth-color: #ffffff;
+}
+
+
+/* Advento */
+html.tempo-advento {
+  --nav-bg: #EDE7F6;
+  --link-color: #4527A0;
+  --link-hover: #9575CD;
+  --dropdown-bg: #D1C4E9;
+  --dropdown-hover-bg: #B39DDB;
+  --dropdown-hover-text: #311B92;
+  --title-color: #4527A0;
+  --subtitle-color: #5E35B1;
+  --h3-color: #5E35B1;
+  --h4-color: #7E57C2;
+  --button-color: #673AB7;
+  --text-color: #311B92;
+  --see-all-color: #5E35B1;
+  --section-title-color: #5E35B1;
+  --name-color: #311B92;
+  --date-bg-color: #9575CD;
+  --date-color: #ffffff;
+  --mounth-color: #ffffff;
+}
+
+
+/* Natal */
+html.tempo-natal {
+  --nav-bg: #FFFDE7;
+  --link-color: #B71C1C;
+  --link-hover: #FBC02D;
+  --dropdown-bg: #FFF9C4;
+  --dropdown-hover-bg: #FFECB3;
+  --dropdown-hover-text: #B71C1C;
+  --title-color: #D32F2F;
+  --subtitle-color: #F44336;
+  --h3-color: #C62828;
+  --h4-color: #EF5350;
+  --button-color: #FBC02D;
+  --text-color: #B71C1C;
+  --see-all-color: #FBC02D;
+  --section-title-color: #FBC02D;
+  --name-color: #B71C1C;
+  --date-bg-color: #FBC02D;
+  --date-color: #ffffff;
+  --mounth-color: #B71C1C;
+}
+
+
+/* Quaresma */
+html.tempo-quaresma {
+  --nav-bg: #F3E5F5;
+  --link-color: #6A1B9A;
+  --link-hover: #BA68C8;
+  --dropdown-bg: #E1BEE7;
+  --dropdown-hover-bg: #CE93D8;
+  --dropdown-hover-text: #4A148C;
+  --title-color: #6A1B9A;
+  --subtitle-color: #8E24AA;
+  --h3-color: #7B1FA2;
+  --h4-color: #AB47BC;
+  --button-color: #8E24AA;
+  --text-color: #4A148C;
+  --see-all-color: #7B1FA2;
+  --section-title-color: #8E24AA;
+  --name-color: #4A148C;
+  --date-bg-color: #AB47BC;
+  --date-color: #ffffff;
+  --mounth-color: #ffffff;
+}
+
+
+/* Páscoa */
+html.tempo-pascoa {
+  --nav-bg: #FFFDE7;
+  --link-color: #BFA027;
+  --link-hover: #FFD54F;
+  --dropdown-bg: #FFF9C4;
+  --dropdown-hover-bg: #FFECB3;
+  --dropdown-hover-text: #BFA027;
+  --title-color: #FBC02D;
+  --subtitle-color: #FDD835;
+  --h3-color: #FDD835;
+  --h4-color: #FFEB3B;
+  --button-color: #FBC02D;
+  --text-color: #5D4037;
+  --see-all-color: #FBC02D;
+  --section-title-color: #FDD835;
+  --name-color: #BFA027;
+  --date-bg-color: #FFE082;
+  --date-color: #5D4037;
+  --mounth-color: #BFA027;
+  --grid-color: #FFF8E1;
+  --input-border: #FBC02D;
+}
+
+
+
+
+/* Pentecostes */
+html.tempo-pentecostes {
+  --nav-bg: #FFEBEE;
+  --link-color: #C62828;
+  --link-hover: #EF5350;
+  --dropdown-bg: #FFCDD2;
+  --dropdown-hover-bg: #E57373;
+  --dropdown-hover-text: #B71C1C;
+  --title-color: #C62828;
+  --subtitle-color: #E53935;
+  --h3-color: #D32F2F;
+  --h4-color: #E57373;
+  --button-color: #C62828;
+  --text-color: #B71C1C;
+  --see-all-color: #C62828;
+  --section-title-color: #D32F2F;
+  --name-color: #B71C1C;
+  --date-bg-color: #FF8A80;
+  --date-color: #ffffff;
+  --mounth-color: #ffffff;
+}
+
+
+/* Finados */
+html.tempo-finados {
+  --nav-bg: #FAFAFA;
+  --link-color: #424242;
+  --link-hover: #757575;
+  --dropdown-bg: #E0E0E0;
+  --dropdown-hover-bg: #BDBDBD;
+  --dropdown-hover-text: #212121;
+  --title-color: #212121;
+  --subtitle-color: #424242;
+  --h3-color: #424242;
+  --h4-color: #616161;
+  --button-color: #757575;
+  --text-color: #212121;
+  --see-all-color: #424242;
+  --section-title-color: #424242;
+  --name-color: #212121;
+  --date-bg-color: #BDBDBD;
+  --date-color: #212121;
+  --mounth-color: #212121;
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

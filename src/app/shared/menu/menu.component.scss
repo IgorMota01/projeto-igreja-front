@@ -1,0 +1,190 @@
+@use '../../../styles/variables' as *;
+
+.main-nav {
+  font-family: 'Jaildi', sans-serif;
+  background-color: var(--nav-bg);
+  padding: 10px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  transition: background-color 0.5s ease;
+
+  // Estilo para o banner com a imagem
+  .menu-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+
+    img {
+      width: 120px; // ajuste o tamanho como preferir
+      height: auto;
+      display: block;
+    }
+  }
+
+  .navbar {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+
+    li {
+      position: relative;
+
+      a {
+        text-decoration: none;
+        color: var(--link-color);
+        font-weight: bold;
+        padding: 8px 0;
+        margin: 0 16px;
+        display: inline-block;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 2px;
+          bottom: 0;
+          left: 0;
+          background-color: var(--link-hover);
+          transition: width 0.3s ease;
+        }
+
+        &:hover {
+          color: var(--link-hover);
+
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+
+      .dropdown {
+        display: none;
+        position: absolute;
+        background-color: var(--dropdown-bg);
+        top: 100%;
+        left: 0;
+        min-width: 160px;
+        z-index: 1000;
+        border-radius: 4px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition: background-color 0.5s ease;
+
+        a {
+          display: block;
+          color: var(--link-color);
+          padding: 10px;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background-color: var(--dropdown-hover-bg);
+            color: var(--dropdown-hover-text);
+          }
+        }
+      }
+
+      &.dropdown-wrapper.active .dropdown {
+        display: block;
+      }
+    }
+  }
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--link-color);
+  margin: 0 auto; // adiciona centralização
+}
+
+
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .nav-links {
+    display: none !important;
+    flex-direction: column;
+    background-color: var(--nav-bg);
+    width: 100%;
+    padding: 10px 0;
+    border-top: 1px solid var(--dropdown-bg);
+
+    &.open {
+      display: flex !important;
+    }
+  }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .main-nav {
+    border-radius: 0;
+
+    .menu-banner {
+      img {
+        width: 100px;
+      }
+    }
+
+    .nav-links {
+      flex-direction: column;
+      gap: 0;
+
+      li {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid var(--dropdown-bg);
+
+        a {
+          padding: 12px 0;
+          margin: 0;
+          display: block;
+          width: 100%;
+
+          &::after {
+            display: none;
+          }
+        }
+
+        .dropdown {
+          position: static;
+          box-shadow: none;
+          border-radius: 0;
+          display: none;
+          width: 100%;
+
+          a {
+            padding: 10px 0;
+            text-align: center;
+          }
+        }
+
+        &.dropdown-wrapper.active .dropdown {
+          display: block;
+        }
+      }
+    }
+  }
+}

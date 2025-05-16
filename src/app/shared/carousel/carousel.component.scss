@@ -1,0 +1,143 @@
+@use '../../../styles/variables' as *;
+
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 1rem auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+  .slide {
+    display: none;
+    cursor: pointer;
+
+    &.active {
+      display: block;
+    }
+
+    .background {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      flex-direction: column;
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        display: block;
+        object-fit: cover;
+      }
+
+      .overlay {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        padding: 1rem -5.5rem; 
+        background: linear-gradient(to top, rgba(20, 21, 20, 0.2));
+        color: var(--link-color);
+        border-radius: 0 0 12px 12px;
+        z-index: 1;
+
+        h3 {
+          margin: 0;
+          margin-left: 1rem;
+          color: var(--link-hover);
+          font-size: 1rem;
+        }
+
+        .summary {
+          margin: 0.3rem 0;
+          margin-left: 1rem;
+          font-size: 0.85rem;
+          color: var(--dropdown-hover-text);
+        }
+
+        .date {
+          font-size: 0.75rem;
+          margin-left: 1rem;
+          color: var(--link-color);
+        }
+      }
+    }
+  }
+
+  .nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--nav-bg);
+    color: var(--link-color);
+    font-size: 1.5rem;
+    padding: 6px 10px;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: var(--link-hover);
+      color: var(--dropdown-hover-text);
+    }
+
+    &.prev {
+      left: 8px;
+    }
+
+    &.next {
+      right: 8px;
+    }
+  }
+
+  // Responsividade geral
+  @media (max-width: 768px) {
+    max-width: 90%;
+    .overlay {
+      padding: 0.8rem;
+
+      h3 {
+        font-size: 1rem;
+      }
+
+      .summary {
+        font-size: 0.8rem;
+      }
+
+      .date {
+        font-size: 0.7rem;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    max-width: 80%;
+
+    .overlay {
+      padding: 0.6rem;
+
+      h3 {
+        font-size: 0.9rem;
+      }
+
+      .summary {
+        font-size: 0.75rem;
+      }
+
+      .date {
+        font-size: 0.65rem;
+      }
+    }
+
+    .nav {
+      font-size: 1.2rem;
+      padding: 4px 8px;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+<div class="layout-container">
+  <app-menu></app-menu>
+
+  <div class="content-wrapper">
+    <ng-content></ng-content>
+  </div>
+
+  <!-- Nova seção de ações fixas -->
+  <div class="actions-section">
+    <div class="action-card" (click)="openMassIntentions()">
+      <i class="material-icons">church</i>
+      <span>Intenção de Missa</span>
+    </div>
+    <div class="action-card" (click)="openDonation()">
+      <i class="material-icons">volunteer_activism</i>
+      <span>Doação</span>
+    </div>
+    <div class="action-card" (click)="openPrayerRequest()">
+      <i class="material-icons">prayer</i>
+      <span>Pedido de Oração</span>
+    </div>
+  </div>
+
+
+
+
+  <footer class="footer">
+    <div class="social-links">
+      <a href="https://facebook.com/pascomsaovicenteferrer" target="_blank" class="social-icon">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://instagram.com/pascomsaovicenteferrer" target="_blank" class="social-icon">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://wa.me/5583988147325" target="_blank" class="social-icon">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="https://www.youtube.com/@PARÓQUIASÃOVICENTEFERRERESANTO" target="_blank" class="social-icon">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <a href="mailto:paroquiasaovicenteferrer@gmail.com" target="_blank" class="social-icon">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+    <div class="footer-text">
+      <p>Nos siga nas redes sociais &copy;</p>
+    </div>
+  </footer>
+</div>

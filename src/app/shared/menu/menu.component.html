@@ -1,0 +1,42 @@
+<nav class="main-nav">
+  <div class="menu-banner">
+    <img [src]="bannerImageUrl" alt="Banner" />
+  </div>
+
+
+  <div class="navbar">
+    <button class="menu-toggle" (click)="toggleMobileMenu()">
+      ☰
+    </button>
+    <ul class="nav-links" [class.open]="isMobileMenuOpen">
+      <!-- Itens normais -->
+      <li><a routerLink="/home" (click)="closeMenu()">Início</a></li>
+      <li><a routerLink="/community" (click)="closeMenu()">Comunidades</a></li>
+      <li><a routerLink="/history" (click)="closeMenu()">História</a></li>
+      <li><a routerLink="/priests" (click)="closeMenu()">Padres</a></li>
+
+      <!-- Dropdown 1 -->
+      <li class="dropdown-wrapper" [class.active]="activeDropdown === 1">
+        <a class="dropdown-toggle" (click)="toggleDropdown(1, $event)">Inscrições ↓</a>
+        <div class="dropdown">
+          <a routerLink="/registration/catechesis">Catequese</a>
+          <a routerLink="/registration/confirmation">Crisma</a>
+          <a routerLink="/registration/baptism">Batismo</a>
+        </div>
+      </li>
+
+      <li><a routerLink="/mass">Missas</a></li>
+      <li><a routerLink="/news">Notícias</a></li>
+
+      <!-- Dropdown 2 -->
+      <li class="dropdown-wrapper" [class.active]="activeDropdown === 2">
+        <a class="dropdown-toggle" (click)="toggleDropdown(2, $event)">Equipes ↓</a>
+        <div class="dropdown">
+          <a routerLink="/team/liturgy">Liturgia</a>
+          <a routerLink="/team/music">Música</a>
+          <a routerLink="/team/pastoral">Pastoral</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

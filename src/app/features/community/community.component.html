@@ -1,0 +1,44 @@
+<app-layout>
+  <div class="community-page">
+    <section class="hero-banner">
+      <div class="hero-content">
+        <h1>Comunidades Paroquiais</h1>
+        <p>Conheça nossos grupos e descubra onde você pode se encaixar</p>
+      </div>
+    </section>
+  
+    <div *ngIf="isLoading" class="loading-spinner">
+      <p>Carregando comunidades...</p>
+    </div>
+  
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+  
+    <div *ngIf="usingFallbackData" class="info-message">
+      <p>⚠️ Estamos usando dados locais temporariamente.</p>
+    </div>
+  
+    <div class="community-container" *ngIf="!isLoading && communities.length > 0">
+      <div class="community-card" *ngFor="let community of communities">
+        <div class="community-header">
+          <img [src]="community.imageUrl" [alt]="community.name" 
+               class="community-image" loading="lazy">
+          <h2>{{ community.name }}</h2>
+        </div>
+        
+        <div class="community-body">
+          <p class="community-description">{{ community.description }}</p>
+          
+          <a [routerLink]="['/community', community.id]" class="btn-know-more">
+            Saiba mais sobre {{ community.name }}
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="!isLoading && communities.length === 0 && !error" class="empty-message">
+      <p>Nenhuma comunidade disponível no momento.</p>
+    </div>
+  </div>
+</app-layout>

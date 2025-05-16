@@ -1,0 +1,184 @@
+/* ============================
+   Variáveis baseadas na paleta litúrgica
+=============================== */
+.form-container {
+  max-width: 300px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius:14px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  transition: all 0.5s ease;
+
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .form-title {
+      color: var(--title-color, #2E7D32);
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+      font-weight: 500;
+    }
+
+    .title-line {
+      width: 100px;
+      height: 3px;
+      background-color: var(--button-color, #388E3C);
+      margin-bottom: 1rem;
+    }
+  }
+
+  .form-subtitle {
+    color: var(--subtitle-color, #2E7D32);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+/* Grupos de formulário */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-weight: 100;
+    color: var(--text-color, #2E7D32);
+    font-size: 1rem;
+  }
+
+  input, textarea {
+    padding: 0.75rem;
+    border: 1px solid var(--input-border, #ccc);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: white;
+
+    &:focus {
+      outline: none;
+      border-color: var(--button-color, #388E3C);
+      box-shadow: 0 0 0 2px rgba(var(--button-color-rgb, 56, 142, 60), 0.2);
+    }
+
+    &::placeholder {
+      color: #7a7a7a;
+    }
+  }
+
+  .fixed-textarea {
+    height: 50px;
+    resize: none;
+  }
+}
+
+/* Mensagens de erro */
+.error-message {
+  color: #d32f2f; /* Mantido fixo para melhor contraste */
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+/* Botão de submit */
+.submit-button {
+  padding: 1rem;
+  background-color: var(--button-color, #388E3C);
+  color: var(--dropdown-hover-text, white);
+  border: none;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: 200;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    background-color: var(--dropdown-hover-bg, #1B5E20);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background-color: #aaa;
+    color: #777;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 720px) {
+  .form-container {
+    margin: 1rem;
+    padding: 1.5rem;
+    
+    .form-title {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+/* Ajustes específicos para cada tempo litúrgico */
+.tempo-comum {
+  .submit-button {
+    color: white; /* Garante contraste no Tempo Comum */
+  }
+}
+
+.tempo-natal {
+  .form-container {
+    background-color: #FFF8E1;
+  }
+  
+  input, textarea {
+    background-color: white !important;
+  }
+}
+
+.tempo-pascoa {
+  .form-container {
+    background-color: #FFFDE7;
+  }
+  
+  input, textarea {
+    border-color: var(--input-border, #FBC02D) !important;
+  }
+}
+
+.tempo-finados {
+  .form-title, .form-subtitle, label {
+    color: #E0E0E0 !important;
+  }
+  
+  .form-container {
+    background-color: #424242;
+    color: #E0E0E0;
+  }
+  
+  input, textarea {
+    background-color: #616161;
+    color: white;
+    border-color: #757575;
+    
+    &::placeholder {
+      color: #BDBDBD;
+    }
+  }
+}

@@ -1,0 +1,76 @@
+<app-layout>
+  <div class="form-container">
+    <div class="header-container">
+      <h2 class="form-title">Inscrição para Catequese</h2>
+      <div class="title-line"></div>
+    </div>
+    <p class="form-subtitle">Preencha os dados abaixo para realizar sua inscrição</p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nome">Nome completo</label>
+        <input 
+          type="text" 
+          id="nome" 
+          formControlName="nome"
+          placeholder="Digite seu nome completo">
+        <div class="error-message" *ngIf="form.get('nome')?.invalid && form.get('nome')?.touched">
+          Por favor, informe seu nome completo
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="idade">Idade</label>
+        <input 
+          type="number" 
+          id="idade" 
+          formControlName="idade"
+          placeholder="Digite sua idade"
+          (input)="checkAge()">
+        <div class="error-message" *ngIf="form.get('idade')?.invalid && form.get('idade')?.touched">
+          Por favor, informe uma idade entre 5 e 18 anos
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="showResponsavelField">
+        <label for="responsavel">Responsável</label>
+        <input 
+          type="text" 
+          id="responsavel" 
+          formControlName="responsavel"
+          placeholder="Nome do responsável">
+        <div class="error-message" *ngIf="form.get('responsavel')?.invalid && form.get('responsavel')?.touched">
+          Por favor, informe o nome do responsável
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input 
+          type="tel" 
+          id="telefone" 
+          formControlName="telefone"
+          placeholder="(XX) XXXXX-XXXX">
+        <div class="error-message" *ngIf="form.get('telefone')?.invalid && form.get('telefone')?.touched">
+          Por favor, informe um telefone válido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="observacoes">Observações (opcional)</label>
+        <textarea 
+          id="observacoes" 
+          formControlName="observacoes"
+          placeholder="Alguma informação adicional"
+          class="fixed-textarea"></textarea>
+      </div>
+
+      <button 
+        type="submit" 
+        class="submit-button"
+        [disabled]="form.invalid">
+        Enviar Inscrição
+      </button>
+    </form>
+  </div>
+</app-layout>
