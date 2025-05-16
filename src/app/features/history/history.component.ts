@@ -75,7 +75,6 @@ export class HistoryComponent implements AfterViewInit, OnDestroy {
     this.galleries.forEach((galleryRef, index) => {
       const gallery = galleryRef.nativeElement;
 
-      // Duplica o conteúdo para criar efeito infinito
       gallery.innerHTML += gallery.innerHTML;
 
       const interval = setInterval(() => {

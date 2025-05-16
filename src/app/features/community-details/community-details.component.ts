@@ -43,14 +43,13 @@ export class CommunityDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer
-  ) {}
+  ) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.community = this.communitiesData.find(c => c.id === Number(id));
-    
+
     if (this.community) {
-      // Corrigido: sanitizando a URL do vídeo
       this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.community.videoUrl);
     }
   }

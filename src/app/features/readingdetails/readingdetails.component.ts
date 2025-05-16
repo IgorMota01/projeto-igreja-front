@@ -22,7 +22,6 @@ export class ReadingdetailsComponent implements OnInit {
   currentSection: string = 'oracoes';
   @ViewChild('audioPlayer') audioPlayer!: ElementRef<HTMLAudioElement>;
 
-  // Dados da liturgia
   liturgiaData: any = {
     data: '',
     titulo: '',
@@ -34,14 +33,12 @@ export class ReadingdetailsComponent implements OnInit {
     antifonas: null
   };
 
-  // Calendário
   currentMonth: Date;
   calendarDays: any[] = [];
   weekdays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
   selectedDate: string;
   currentDate: string;
 
-  // Áudio
   currentAudio: { url: string, type: string, title: string } | null = null;
   audioSources = {
     oracoes: '',
@@ -70,7 +67,6 @@ export class ReadingdetailsComponent implements OnInit {
       if (dateParam) {
         this.currentDate = dateParam;
         this.selectedDate = dateParam;
-        // Atualiza o mês exibido no calendário
         const date = new Date(dateParam);
         this.currentMonth = new Date(date.getFullYear(), date.getMonth(), 1);
         this.generateCalendar();
@@ -79,12 +75,10 @@ export class ReadingdetailsComponent implements OnInit {
     });
   }
 
-  // Métodos auxiliares
   private formatDate(date: Date): string {
     return this.datePipe.transform(date, 'yyyy-MM-dd') || date.toISOString().split('T')[0];
   }
 
-  // Calendário
   generateCalendar(): void {
     const year = this.currentMonth.getFullYear();
     const month = this.currentMonth.getMonth();
@@ -97,7 +91,6 @@ export class ReadingdetailsComponent implements OnInit {
 
     this.calendarDays = [];
 
-    // Dias do mês anterior
     const prevMonthLastDay = new Date(year, month, 0).getDate();
     for (let i = 0; i < startingDay; i++) {
       this.calendarDays.push({
@@ -108,7 +101,6 @@ export class ReadingdetailsComponent implements OnInit {
       });
     }
 
-    // Dias do mês atual
     for (let i = 1; i <= daysInMonth; i++) {
       const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}`;
       this.calendarDays.push({
@@ -119,8 +111,7 @@ export class ReadingdetailsComponent implements OnInit {
       });
     }
 
-    // Dias do próximo mês
-    const totalCells = 42; // 6 semanas
+    const totalCells = 42;
     const remainingDays = totalCells - (startingDay + daysInMonth);
     for (let i = 1; i <= remainingDays; i++) {
       this.calendarDays.push({
@@ -155,7 +146,7 @@ export class ReadingdetailsComponent implements OnInit {
       this.selectedDate = date;
       this.currentDate = date;
       this.router.navigate(['liturgia/detalhes', date]);
-      this.showCalendar = false; // Recolhe o calendário após a seleção
+      this.showCalendar = false;
     }
   }
 
@@ -163,7 +154,6 @@ export class ReadingdetailsComponent implements OnInit {
     this.showCalendar = !this.showCalendar;
   }
 
-  // Áudio
   playAudio(section: string): void {
     if (!this.liturgiaData[section]) return;
 
@@ -184,7 +174,6 @@ export class ReadingdetailsComponent implements OnInit {
     }, 100);
   }
 
-  // Liturgia
   loadLiturgiaCompleta() {
     this.isLoading = true;
     this.errorMessage = '';
@@ -194,7 +183,6 @@ export class ReadingdetailsComponent implements OnInit {
         next: (response: any) => {
           this.liturgiaData = response || {};
 
-          // Define a primeira seção disponível como ativa
           if (this.liturgiaData.oracoes) {
             this.currentSection = 'oracoes';
           } else if (this.liturgiaData.primeiraLeitura) {
@@ -230,8 +218,6 @@ export class ReadingdetailsComponent implements OnInit {
       }
     });
   }
-
-  // Formatação
   getFormattedDate(): string {
     return this.datePipe.transform(this.currentDate, 'fullDate') || '';
   }
@@ -242,12 +228,10 @@ export class ReadingdetailsComponent implements OnInit {
 
   formatarTextoComVersiculos(texto: string): string {
     if (!texto) return '';
-
-    // Encontra números no texto e os envolve com <sup>
     return texto.replace(/(\d+)/g, '<sup>$1</sup>');
   }
 
   goBack(): void {
-    this.router.navigate(['/']); // Navegue para a sua rota inicial (ajuste '/' se necessário)
+    this.router.navigate(['/']);
   }
 }

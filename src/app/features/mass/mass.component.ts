@@ -10,9 +10,9 @@ import { RouterModule } from '@angular/router';
   styleUrl: './mass.component.scss'
 })
 export class MassComponent {
-intencao(_t10: { dia: string; horarios: string[]; intencao: string; }|{ dia: string; horarios: string[]; intencao?: undefined; }) {
-throw new Error('Method not implemented.');
-}
+  intencao(_t10: { dia: string; horarios: string[]; intencao: string; } | { dia: string; horarios: string[]; intencao?: undefined; }) {
+    throw new Error('Method not implemented.');
+  }
   horarios = [
     { dia: 'Sábado', horarios: ['18:00 - Missa Vespertina'], intencao: 'Pela comunidade' },
     { dia: 'Domingo - Manhã', horarios: ['07:30 - Missa Tradicional', '09:00 - Missa Familiar', '10:30 - Missa Solene'] },
@@ -22,14 +22,13 @@ throw new Error('Method not implemented.');
   ];
 
   ultimasMissas = [
-    { 
+    {
       id: 1,
-      data: '15/05/2023', 
-      celebrante: 'Pe. Roberto Gomes', 
+      data: '15/05/2023',
+      celebrante: 'Pe. Roberto Gomes',
       intencoes: 'Pelos enfermos da comunidade',
       fotoUrl: '/assets/missas/missa1.jpg'
     },
-    // ... outras missas
   ];
 
 }

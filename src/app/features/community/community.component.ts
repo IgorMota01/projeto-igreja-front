@@ -27,7 +27,7 @@ export class CommunityComponent implements OnInit {
   error: string | null = null;
   usingFallbackData = false; // Nova flag para indicar que está usando dados locais
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.loadCommunities();
@@ -37,11 +37,10 @@ export class CommunityComponent implements OnInit {
     this.isLoading = true;
     this.error = null;
     this.usingFallbackData = false;
-    
+
     this.http.get<Community[]>('api/communities')
       .pipe(
         catchError(() => {
-          // Em caso de erro, retorna os dados locais
           this.usingFallbackData = true;
           return of(this.getFallbackCommunities());
         })
@@ -52,7 +51,6 @@ export class CommunityComponent implements OnInit {
           this.isLoading = false;
         },
         error: (err) => {
-          // Este bloco só será executado se o catchError não lidar com o erro
           this.error = 'Erro ao carregar comunidades. Mostrando dados locais.';
           this.communities = this.getFallbackCommunities();
           this.usingFallbackData = true;
@@ -75,7 +73,6 @@ export class CommunityComponent implements OnInit {
         description: 'Grupo de jovens da comunidade São Pedro',
         imageUrl: '/img/pe_ordenacao.PNG'
       },
-      // Adicione mais comunidades locais se necessário
       {
         id: 3,
         name: 'Comunidade Nossa Senhora Aparecida',
@@ -87,7 +84,6 @@ export class CommunityComponent implements OnInit {
 
   getCommunityDetails(id: number): Observable<Community> {
     if (this.usingFallbackData) {
-      // Se estiver usando dados locais, retorna do array local
       const community = this.communities.find(c => c.id === id);
       return community ? of(community) : throwError('Comunidade não encontrada');
     }

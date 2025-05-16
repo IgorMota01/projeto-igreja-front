@@ -1,6 +1,3 @@
-/* ============================
-   Paleta padrão (cores fixas)
-=============================== */
 :root {
   --nav-bg: #F2F2F2;
   --link-color: #747474;
@@ -10,7 +7,6 @@
   --dropdown-hover-text: #F2CB07;
 }
 
-/* Transição global */
 body {
   transition:
     background-color 0.5s ease,
@@ -21,7 +17,6 @@ body {
    Tempos Litúrgicos
 =============================== */
 
-/* Tempo Comum */
 html.tempo-comum {
   --nav-bg: #E8F5E9;
   --link-color: #1B5E20;
@@ -44,7 +39,6 @@ html.tempo-comum {
 }
 
 
-/* Advento */
 html.tempo-advento {
   --nav-bg: #EDE7F6;
   --link-color: #4527A0;
@@ -67,7 +61,6 @@ html.tempo-advento {
 }
 
 
-/* Natal */
 html.tempo-natal {
   --nav-bg: #FFFDE7;
   --link-color: #B71C1C;
@@ -90,7 +83,6 @@ html.tempo-natal {
 }
 
 
-/* Quaresma */
 html.tempo-quaresma {
   --nav-bg: #F3E5F5;
   --link-color: #6A1B9A;
@@ -113,7 +105,6 @@ html.tempo-quaresma {
 }
 
 
-/* Páscoa */
 html.tempo-pascoa {
   --nav-bg: #FFFDE7;
   --link-color: #BFA027;
@@ -140,7 +131,6 @@ html.tempo-pascoa {
 
 
 
-/* Pentecostes */
 html.tempo-pentecostes {
   --nav-bg: #FFEBEE;
   --link-color: #C62828;
@@ -163,7 +153,6 @@ html.tempo-pentecostes {
 }
 
 
-/* Finados */
 html.tempo-finados {
   --nav-bg: #FAFAFA;
   --link-color: #424242;
@@ -186,5 +175,12 @@ html.tempo-finados {
 }
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

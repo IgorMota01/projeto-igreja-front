@@ -39,7 +39,7 @@
         width: 100%;
         position: absolute;
         bottom: 0;
-        padding: 1rem -5.5rem; 
+        padding: 1rem -5.5rem;
         background: linear-gradient(to top, rgba(20, 21, 20, 0.2));
         color: var(--link-color);
         border-radius: 0 0 12px 12px;
@@ -96,9 +96,9 @@
     }
   }
 
-  // Responsividade geral
   @media (max-width: 768px) {
     max-width: 90%;
+
     .overlay {
       padding: 0.8rem;
 

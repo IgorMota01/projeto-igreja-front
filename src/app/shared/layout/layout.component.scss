@@ -103,7 +103,6 @@
     }
   }
 
-  /* Responsividade */
   @media (max-width: 768px) {
     .actions-section {
       position: fixed;
@@ -141,7 +140,6 @@
       }
     }
 
-    /* Ajuste para não esconder conteúdo */
     .content-wrapper {
       padding-bottom: 80px !important;
     }
@@ -152,7 +150,6 @@
   }
 
 
-  /* Responsivo */
   @media (max-width: 768px) {
     .content-wrapper {
       max-width: 80%;

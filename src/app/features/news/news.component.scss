@@ -1,6 +1,5 @@
 @use '../../../styles/variables' as *;
 
-/* Página de Notícias */
 .noticias-page {
   display: flex;
   flex-direction: column;
@@ -8,7 +7,7 @@
 
   .hero-banner {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                url('/img/noticias-banner.jpg') center/cover no-repeat;
+      url('/img/noticias-banner.jpg') center/cover no-repeat;
     color: var(--link-color);
     text-align: center;
     padding: 4rem 1rem;
@@ -141,7 +140,6 @@
   }
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   .hero-banner {
     padding: 3rem 1rem;

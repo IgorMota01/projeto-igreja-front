@@ -19,7 +19,6 @@ export class NewsComponent {
       imagem: '/assets/noticias/festa-junina.jpg',
       categoria: 'Evento'
     },
-    // ... outras notícias
   ];
 
   categorias = ['Todos', 'Evento', 'Aviso', 'Pastoral'];

@@ -20,7 +20,6 @@ export class MenuComponent {
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {
     const target = event.target as HTMLElement;
-    // Se o clique não for em nenhum elemento do menu, fecha
     if (!target.closest('.main-nav')) {
       this.activeDropdown = null;
       this.isMobileMenuOpen = false;

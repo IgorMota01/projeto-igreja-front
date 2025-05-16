@@ -21,7 +21,6 @@ export class AppComponent implements OnInit {
     const today = new Date();
     const year = today.getFullYear();
 
-    // Cálculo da data da Páscoa
     const a = year % 19;
     const b = Math.floor(year / 100);
     const c = year % 100;
@@ -38,7 +37,6 @@ export class AppComponent implements OnInit {
     const day = ((h + l - 7 * m + 114) % 31) + 1;
     const easter = new Date(year, month - 1, day);
 
-    // Datas relacionadas
     const ashWednesday = new Date(easter);
     ashWednesday.setDate(easter.getDate() - 46);
 
@@ -48,16 +46,13 @@ export class AppComponent implements OnInit {
     const christmas = new Date(year, 11, 25);
     const epiphany = new Date(year, 0, 6);
 
-    // Batismo do Senhor (domingo depois da Epifania)
     const baptism = new Date(epiphany);
     while (baptism.getDay() !== 0) baptism.setDate(baptism.getDate() + 1);
 
-    // Início do Advento: 4 domingos antes do Natal
     const advent = new Date(christmas);
     advent.setDate(advent.getDate() - 21);
     while (advent.getDay() !== 0) advent.setDate(advent.getDate() - 1);
 
-    // Oitava da Páscoa
     const easterOctaveEnd = new Date(easter);
     easterOctaveEnd.setDate(easter.getDate() + 8);
 

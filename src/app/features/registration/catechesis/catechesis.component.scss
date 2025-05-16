@@ -1,12 +1,9 @@
-/* ============================
-   Variáveis baseadas na paleta litúrgica
-=============================== */
 .form-container {
   max-width: 300px;
   margin: 2rem auto;
   padding: 2rem;
   background: white;
-  border-radius:14px;
+  border-radius: 14px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   font-family: Roboto, "Helvetica Neue", sans-serif;
   transition: all 0.5s ease;
@@ -47,7 +44,6 @@
   }
 }
 
-/* Grupos de formulário */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -59,7 +55,8 @@
     font-size: 1rem;
   }
 
-  input, textarea {
+  input,
+  textarea {
     padding: 0.75rem;
     border: 1px solid var(--input-border, #ccc);
     border-radius: 4px;
@@ -84,14 +81,12 @@
   }
 }
 
-/* Mensagens de erro */
 .error-message {
-  color: #d32f2f; /* Mantido fixo para melhor contraste */
+  color: #d32f2f;
   font-size: 0.85rem;
   margin-top: 0.25rem;
 }
 
-/* Botão de submit */
 .submit-button {
   padding: 1rem;
   background-color: var(--button-color, #388E3C);
@@ -123,22 +118,20 @@
   }
 }
 
-/* Responsividade */
 @media (max-width: 720px) {
   .form-container {
     margin: 1rem;
     padding: 1.5rem;
-    
+
     .form-title {
       font-size: 1.5rem;
     }
   }
 }
 
-/* Ajustes específicos para cada tempo litúrgico */
 .tempo-comum {
   .submit-button {
-    color: white; /* Garante contraste no Tempo Comum */
+    color: white;
   }
 }
 
@@ -146,8 +139,9 @@
   .form-container {
     background-color: #FFF8E1;
   }
-  
-  input, textarea {
+
+  input,
+  textarea {
     background-color: white !important;
   }
 }
@@ -156,27 +150,32 @@
   .form-container {
     background-color: #FFFDE7;
   }
-  
-  input, textarea {
+
+  input,
+  textarea {
     border-color: var(--input-border, #FBC02D) !important;
   }
 }
 
 .tempo-finados {
-  .form-title, .form-subtitle, label {
+
+  .form-title,
+  .form-subtitle,
+  label {
     color: #E0E0E0 !important;
   }
-  
+
   .form-container {
     background-color: #424242;
     color: #E0E0E0;
   }
-  
-  input, textarea {
+
+  input,
+  textarea {
     background-color: #616161;
     color: white;
     border-color: #757575;
-    
+
     &::placeholder {
       color: #BDBDBD;
     }
